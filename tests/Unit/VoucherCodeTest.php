@@ -39,7 +39,7 @@ class VoucherCodeTest extends TestCase
      * @return void
      */
     public function testVoucherCodeFromApiThroughPostRequest(){
-        $response = $this->json('POST', '127.0.0.1:8000/api/vouchers', ['code'=>'s7k1L8VIEZ', 'email' => 'hwalsh@example.org']);
+        $response = $this->json('POST', '/api/v1/voucher', ['code'=>'s7k1L8VIEZ', 'email' => 'hwalsh@example.org']);
         $response->assertStatus(200);
     }
 
