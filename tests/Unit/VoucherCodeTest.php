@@ -50,7 +50,9 @@ class VoucherCodeTest extends TestCase
      * @return void
      */
     public function testInvalidEmailFromApiThroughGetRequest(){
-        $response = $this->json('GET', '/api/v1/vouchers/bcole');
-        $response->assertStatus(400);
+        $response = $this->json('GET', 'api/v1/vouchers/bcole');
+        $response->assertStatus(200)->assertJson([
+            'code' => 400,
+        ]);
     }
 }
