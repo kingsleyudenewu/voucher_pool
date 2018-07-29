@@ -147,6 +147,12 @@ class VoucherCodeController extends Controller
     }
 
     public function voucherMailList($email){
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return response()->json([
+                'code'      => 400,
+                'message'  => 'Invalide email entered'
+            ]);
+        }
         $getEmail = Recipient::where('email', $email)->first();
         if(!$getEmail){
             return response()->json([

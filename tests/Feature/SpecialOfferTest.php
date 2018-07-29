@@ -22,4 +22,9 @@ class SpecialOfferTest extends TestCase
         $response = $this->get('/special_offers');
         $response->assertStatus(200);
     }
+
+    public function testSpecialOfferCreatePage(){
+        $response = $this->get('/special_offers/create');
+        $response->assertStatus(200);
+    }
 }

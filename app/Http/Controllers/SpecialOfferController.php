@@ -39,6 +39,14 @@ class SpecialOfferController extends Controller
      */
     public function store(Request $request)
     {
+        //Writing this validation for the unit test
+        $request->validate([
+            'name' => 'required',
+            'discount' => 'required|numeric|min:1|max:99',
+            'expiration' => 'required|date_format:Y-m-d:after:yesterday'
+        ]);
+
+
         $validate = Validator::make($request->all(), [
             'name' => 'required',
             'discount' => 'required|numeric|min:1|max:99',
