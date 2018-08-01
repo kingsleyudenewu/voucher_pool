@@ -95,8 +95,7 @@ class VoucherCodeController extends Controller
             ->select(DB::raw('code, recipients.name as recipient_name, special_offers.name as special_offer_name, discount, expiration, date_used'))
             ->get();
 
-        return Datatables::of($voucher_code)
-            ->make(true);
+        return Datatables::of($voucher_code)->make(true);
     }
 
     public function verifyVoucher(Request $request)

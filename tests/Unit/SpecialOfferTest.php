@@ -45,7 +45,7 @@ class SpecialOfferTest extends TestCase
      *
      */
     public function testSpecialOffersWithInvalidDiscountAsAString(){
-        $response = $this->post('/special_offers', ['name'=>'Black Friday', 'discount' => 101, 'expiration' =>'2018-10-31']);
+        $response = $this->post('/special_offers', ['name'=>'Black Friday', 'discount' => 'asdfjdf', 'expiration' =>'2018-10-31']);
         $response->assertSessionHasErrors(['discount']);
     }
 
