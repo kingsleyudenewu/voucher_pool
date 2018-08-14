@@ -17,6 +17,7 @@ The vouvher pool system provides you with the ability to create recipients and a
     - Run php artisan migrate
     - Run php artisan db:seed to generate dummy datas for both recipints, vouchers codes and special offers
     - Start your vouche pool app by running php artisan serve 
+    - To run your <b>TEST</b> go to your console and type ./vendor/bin/phpunit
 </pre>
 </div>
 
