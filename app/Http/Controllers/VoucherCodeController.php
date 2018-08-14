@@ -102,9 +102,8 @@ class VoucherCodeController extends Controller
     {
         $validate = Validator::make($request->all(), [
            'code' => 'required|min:8',
-            'email' => 'required|email'
+            'email' => 'required|string|email'
         ]);
-
 
         if($validate->fails()){
             return response()->json([
@@ -145,14 +144,19 @@ class VoucherCodeController extends Controller
         }
     }
 
-    public function voucherMailList($email){
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    public function voucherMailList(Request $request){
+        $validate = Validator::make($request->all(), [
+            'email' => 'required|string|email'
+        ]);
+
+        if($validate->fails()){
             return response()->json([
                 'code'      => 400,
-                'message'  => 'Invalide email entered'
-            ]);
+                'message'   => $validate->errors()->first()
+            ], 400);
         }
-        $getEmail = Recipient::where('email', $email)->first();
+
+        $getEmail = Recipient::where('email', $request->email)->first();
         if(!$getEmail){
             return response()->json([
                 'code'      => 400,
@@ -161,7 +165,7 @@ class VoucherCodeController extends Controller
         }
 
         //Fetch all valid vouchers that belongs to the Recipient
-        $getVouchers = $getEmail->vouchers()->join('special_offers', 'special_offer_id', '=', 'special_offers.id')->select('code', 'special_offers.name')->whereNull('voucher_codes.date_used')->get();
+        $getVouchers = $getEmail->vouchers()->join('special_offers', 'special_offer_id', '=', 'special_offers.id')->select('code')->whereNull('voucher_codes.date_used')->get();
 
         if(!$getVouchers){
             return response()->json([

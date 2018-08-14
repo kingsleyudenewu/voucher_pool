@@ -19,5 +19,5 @@ use Illuminate\Http\Request;
 
 Route::prefix('v1')->group(function (){
     Route::post('/voucher', 'VoucherCodeController@verifyVoucher')->name('voucher');
-    Route::get('/vouchers/{email}', 'VoucherCodeController@voucherMailList')->name('voucher.email');
+    Route::post('/vouchers/email', 'VoucherCodeController@voucherMailList')->name('voucher.email');
 });

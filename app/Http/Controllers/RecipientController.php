@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Recipient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
 class RecipientController extends Controller
@@ -25,7 +26,7 @@ class RecipientController extends Controller
      */
     public function create()
     {
-        //
+        return view('recipient.create');
     }
 
     /**
@@ -36,52 +37,21 @@ class RecipientController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Recipient  $recipient
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Recipient $recipient)
-    {
-        //
-    }
+        $validate = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'email' => 'required|unique:recipients,email'
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Recipient  $recipient
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Recipient $recipient)
-    {
-        //
-    }
+        //If validation fails
+        if($validate->fails()){
+            flash('Operation failed '.$validate->errors()->first())->error();
+            return redirect()->back()->withInput();
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Recipient  $recipient
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Recipient $recipient)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Recipient  $recipient
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Recipient $recipient)
-    {
-        //
+        //Insert recipient
+        Recipient::create(['name'=> $request->name, 'email'=>$request->email]);
+        return redirect()->route('recipients.index');
     }
 
     public function  all_recipient(){

@@ -6,8 +6,15 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Special Offers</div>
+                        <div class="card-header">Recipients</div>
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-offset-8 col-sm-3">
+                                    <div class="pull-right">
+                                        <a href="{{ route('recipients.create') }}" class="btn btn-block btn-success">Create Recipient</a>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="table-responsive m-t-40">
                                 <table class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%" id="special_offer_table">
                                     <thead>

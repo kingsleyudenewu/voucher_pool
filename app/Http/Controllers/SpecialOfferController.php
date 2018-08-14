@@ -41,7 +41,7 @@ class SpecialOfferController extends Controller
     {
         //Writing this validation for the unit test
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string',
             'discount' => 'required|numeric|min:1|max:99',
             'expiration' => 'required|date_format:Y-m-d:after:yesterday'
         ]);

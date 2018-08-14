@@ -15,6 +15,8 @@ Route::get('/', 'VoucherCodeController@index')->name('index');
 Route::get('/allVoucher', 'VoucherCodeController@allVoucher')->name('allVoucher');
 
 Route::get('/recipients','RecipientController@index')->name('recipients.index');
+Route::get('/recipients/create','RecipientController@create')->name('recipients.create');
+Route::post('/recipients','RecipientController@store')->name('recipients.store');
 Route::get('/all_recipient', 'RecipientController@all_recipient')->name('all_recipient');
 
 
