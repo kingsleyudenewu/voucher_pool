@@ -6,7 +6,6 @@ use App\Recipient;
 use App\VoucherCode;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Resources\VoucherCode as VoucherCodeResource;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
