@@ -17,7 +17,7 @@
                                             <th>Special Offer</th>
                                             <th>Expiration</th>
                                             <th>Date Used</th>
-                                            <th>Expiration</th>
+                                            <th>Discount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
