@@ -21,16 +21,16 @@ class RecipientTest extends TestCase
     }
 
     /**
-     * A basic test example.
+     * This test if we can create
      *
      * @return void
      */
     public function testIfWeCanCreateReciepient()
     {
         $response = $this->post('/recipients', ['name'=>$this->recipient->name, 'email' => $this->recipient->email]);
-
         // Redirects after creating the Special Offer
         $response->assertStatus(302);
-//        $response->assertRedirectedTo(route('recipients.index'));
     }
+
+
 }
